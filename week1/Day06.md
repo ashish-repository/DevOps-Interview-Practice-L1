@@ -3,7 +3,7 @@
 Fix these broken files:
 
 ## 🔹 Ansible (broken)
-
+```
 - name Install nginx
  hosts all
  become yes
@@ -12,10 +12,10 @@ Fix these broken files:
   yum:
     name nginx
     state present
-
+```
 
 ## 🔹 Terraform (broken)
-
+```
 resource "aws_instance" "BrokenEC2" {
   ami = "ami-0xyz"
   instance_type = t2.micro
@@ -23,9 +23,9 @@ tags {
  Name = "Broken"
 }
 }
-
+```
 ## 🔹 Kubernetes (broken)
-
+```
 apiVersion v1
 kind Pod
 metadata:
@@ -34,13 +34,13 @@ spec
  containers:
    - name app
      image nginx
-
+```
 
 
 #  Debugging Pipelines
 ## 🔹 Jenkins Pipeline — Debugging
 You will learn how to **fix broken stages and handle errors**.
-
+```
 pipeline {
     agent any
     stages {
@@ -65,10 +65,10 @@ pipeline {
         }
     }
 }
-
+```
 ## 🔹 GitLab CI — Debugging
 You will learn how to **handle job failures and exit codes**.
-
+```
 stages:
   - build
   - test
@@ -87,3 +87,4 @@ test:
   script:
     - cd sample-java-app
     - mvn test || { echo "Tests failed"; exit 1; }
+```
