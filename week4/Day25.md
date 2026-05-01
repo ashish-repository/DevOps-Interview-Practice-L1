@@ -1,7 +1,7 @@
 # Day 25 — Lineinfile, Key Pair, Multi-Container, File Count
 
 ## 🔹 Ansible — Modify Existing Line
-
+```
 ---
 - name: Update SSH config for Cloudops
   hosts: all
@@ -13,10 +13,10 @@
         path: /etc/ssh/sshd_config
         regexp: "^PermitRootLogin"
         line: "PermitRootLogin no"
-
+```
 
 ## 🔹 Terraform — EC2 Key Pair Output
-
+```
 resource "aws_key_pair" "CloudopsKey" {
   key_name   = "CloudopsKey"
   public_key = file("~/.ssh/id_rsa.pub")
@@ -26,9 +26,9 @@ output "Cloudops_Key_Name" {
   value = aws_key_pair.CloudopsKey.key_name
 }
 
-
+```
 ## 🔹 Kubernetes — Multi-Container Pod (Sidecar Logging)
-
+```
 apiVersion: v1
 kind: Pod
 metadata:
@@ -40,10 +40,10 @@ spec:
     - name: log-writer
       image: busybox
       command: ["sh", "-c", "while true; do echo log entry; sleep 5; done"]
-
+```
 
 ## 🔹 Shell Script — Count Files in Directory
-
+```
 #!/bin/bash
 
 DIR="/var/log"
@@ -51,13 +51,13 @@ DIR="/var/log"
 COUNT=$(ls $DIR | wc -l)
 
 echo "Total files in $DIR: $COUNT"
-
+```
 
 # Advanced Caching
 
 ## 🔹 Jenkins Pipeline — Cache Dependencies
 You will learn how to **cache Maven dependencies with realistic labels**.
-
+```
 pipeline {
     agent any
     environment {
@@ -84,10 +84,10 @@ pipeline {
         }
     }
 }
-
+```
 ## 🔹 GitLab CI — Cache Dependencies
 You will learn how to **cache dependencies in GitLab CI with tags**.
-
+```
 stages:
   - build
 
@@ -106,3 +106,4 @@ build:
   script:
     - mvn clean compile
     - echo "Cached dependencies for $INSTITUTE_NAME in $ENV by $TEAM"
+```
