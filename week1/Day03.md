@@ -1,7 +1,7 @@
 # Day 03 — Users, SGs, Env Vars
 
 ## 🔹 Ansible — Create User
-
+```
 ---
 - name: Create Cloudops user
   hosts: all
@@ -12,10 +12,10 @@
       user:
         name: Cloudops-admin
         shell: /bin/bash
-
+```
 
 ## 🔹 Terraform — Security Group (r6i.4xlarge EC2)
-
+```
 provider "aws" {
   region = "us-east-1"
 }
@@ -41,10 +41,10 @@ resource "aws_instance" "CloudopsEC2" {
     Name = "Cloudops-EC2"
   }
 }
-
+```
 
 ## 🔹 Kubernetes — Add Environment Variables
-
+```
 apiVersion: v1
 kind: Pod
 metadata:
@@ -56,10 +56,10 @@ spec:
       env:
         - name: APP_ENV
           value: "production"
-
+```
 
 ## 🔹 Shell Script — Check File Exists
-
+```
 #!/bin/bash
 FILE="/tmp/Cloudops.txt"
 
@@ -68,12 +68,12 @@ if [ -f "$FILE" ]; then
 else
   echo "File does not exist"
 fi
-
+```
 
 # NodeJS Build
 ## 🔹 Jenkins Pipeline — NodeJS Build
 You will learn how to **install dependencies, run tests, and build a NodeJS project**.
-
+```
 pipeline {
     agent any
     tools {
@@ -102,9 +102,9 @@ pipeline {
         }
     }
 }
-
+```
 ## 🔹 GitLab CI — NodeJS Build
-
+```
 stages:
   - install
   - test
@@ -131,3 +131,4 @@ node-build:
   script:
     - cd sample-node-app
     - npm run build
+```
