@@ -3,7 +3,7 @@
 Fix these intentionally broken files:
 
 ## 🔹 Ansible — Broken
-
+```
 - name Install stuff
   hosts all
   tasks:
@@ -11,18 +11,18 @@ Fix these intentionally broken files:
     yum:
       name httpd
       state present
-
+```
 
 ## 🔹 Terraform — Broken
-
+```
 resource aws_instance "Bad" {
  ami "ami-123"
  instance_type c6i.8xlarge
 }
-
+```
 
 ## 🔹 Kubernetes — Broken
-
+```
 apiVersion apps/v1
 kind Deployment
 metadata:
@@ -40,13 +40,13 @@ template:
   containers:
    -name: app
     image nginx
-
+```
 
 # Secrets & Credentials
 
 ## 🔹 Jenkins Pipeline — Using Credentials
 You will learn how to **use credentials securely in Jenkins**.
-
+```
 pipeline {
     agent any
     environment {
@@ -67,10 +67,10 @@ pipeline {
         }
     }
 }
-
+```
 ## 🔹 GitLab CI — Using CI/CD Variables
 You will learn how to **use GitLab CI variables securely**.
-
+```
 stages:
   - build
 
@@ -83,3 +83,4 @@ build:
   image: alpine:latest
   script:
     - echo "Using secret $API_KEY for $INSTITUTE_NAME"
+```
