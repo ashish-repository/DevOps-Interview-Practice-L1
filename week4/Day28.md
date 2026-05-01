@@ -3,7 +3,7 @@
 Fix these intentionally broken files:
 
 ## 🔹 Ansible — Broken
-
+```
 - name Install nginx
  hosts all
  tasks:
@@ -11,18 +11,18 @@ Fix these intentionally broken files:
     yum:
       name nginx
       state present
-
+```
 
 ## 🔹 Terraform — Broken
-
+```
 resource "aws_s3" "BadBucket" {
 bucket = Cloudops-bucket
 acl public-read
 }
-
+```
 
 ## 🔹 Kubernetes — Broken
-
+```
 apiVersion v1
 kind Pod
 metadata:
@@ -31,13 +31,13 @@ spec:
  containers:
   -name app
    image nginx
-
+```
 
 # Rollback Strategies
 
 ## 🔹 Jenkins Pipeline — Automatic Rollback
 You will learn how to **rollback automatically if deployment fails**.
-
+```
 pipeline {
     agent any
     environment {
@@ -60,10 +60,10 @@ pipeline {
         }
     }
 }
-
+```
 ## 🔹 GitLab CI — Rollback Strategy
 You will learn how to **simulate rollback in GitLab CI with tags**.
-
+```
 stages:
   - deploy
 
@@ -80,3 +80,4 @@ deploy:
     - exit 1
   after_script:
     - echo "Deployment failed. Rolling back $INSTITUTE_NAME app in $ENV"
+```
