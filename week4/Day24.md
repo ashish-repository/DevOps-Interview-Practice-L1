@@ -1,7 +1,7 @@
 # Day 24 — Templates, ALB Listener, PV/PVC, Menu System
 
 ## 🔹 Ansible — Deploy Config Using Template
-
+```
 ---
 - name: Deploy Cloudops template
   hosts: all
@@ -13,9 +13,9 @@
         src: Cloudops.conf.j2
         dest: /etc/Cloudops.conf
 
-
+```
 ## 🔹 Terraform — ALB Listener
-
+```
 resource "aws_lb_listener" "CloudopsListener" {
   load_balancer_arn = aws_lb.CloudopsALB.arn
   port              = "80"
@@ -30,10 +30,10 @@ resource "aws_lb_listener" "CloudopsListener" {
     }
   }
 }
-
+```
 
 ## 🔹 Kubernetes — PV + PVC
-
+```
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -57,10 +57,10 @@ spec:
   resources:
     requests:
       storage: 500Mi
-
+```
 
 ## 🔹 Shell Script — Menu Driven Program
-
+``
 #!/bin/bash
 
 echo "1) Show date"
@@ -75,13 +75,13 @@ case $opt in
   3) who ;;
   *) echo "Invalid choice" ;;
 esac
-
+```
 
 # Automated Testing Pipeline
 
 ## 🔹 Jenkins Pipeline — Run Unit & Integration Tests
 You will learn how to **run multiple test suites and tag reports**.
-
+```
 pipeline {
     agent any
     environment {
@@ -112,10 +112,10 @@ pipeline {
         }
     }
 }
-
+```
 ## 🔹 GitLab CI — Run Tests
 You will learn how to **run unit and integration tests in GitLab CI**.
-
+```
 stages:
   - unit
   - integration
@@ -138,3 +138,4 @@ integration-test:
   script:
     - mvn verify -Dgroup=integration
     - echo "Integration tests completed for $INSTITUTE_NAME by $TEAM in $ENV"
+```
