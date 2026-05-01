@@ -1,7 +1,7 @@
 # Day 19 — Git Deploy, RDS Skeleton, Rolling Strategy, Ping Check
 
 ## 🔹 Ansible — Deploy App Using Git
-
+```
 ---
 - name: Deploy app from Git for Cloudops
   hosts: all
@@ -17,10 +17,10 @@
       git:
         repo: "https://github.com/ashishcloudops01/sample-maven-project.git"
         dest: "/opt/Cloudops-app"
-
+```
 
 ## 🔹 Terraform — RDS Skeleton (MySQL)
-
+```
 resource "aws_db_instance" "CloudopsRDS" {
   allocated_storage      = 20
   engine                 = "mysql"
@@ -29,10 +29,10 @@ resource "aws_db_instance" "CloudopsRDS" {
   password               = "Cloudops123"
   skip_final_snapshot    = true
 }
-
+```
 
 ## 🔹 Kubernetes — Deployment Rolling Update (Detailed)
-
+```
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -55,10 +55,10 @@ spec:
       containers:
         - name: app
           image: nginx
-
+```
 
 ## 🔹 Shell Script — Check Internet Connectivity
-
+```
 #!/bin/bash
 
 ping -c 2 google.com &> /dev/null
@@ -68,13 +68,13 @@ if [ $? -eq 0 ]; then
 else
   echo "No internet connection"
 fi
-
+```
 
 # Approvals
 
 ## 🔹 Jenkins Pipeline — Manual Approval
 You will learn how to **pause pipeline until manual approval**.
-
+```
 pipeline {
     agent any
     environment {
@@ -89,10 +89,10 @@ pipeline {
         }
     }
 }
-
+```
 ## 🔹 GitLab CI — Manual Approval Job
 You will learn how to **use manual jobs in GitLab CI for approvals**.
-
+```
 stages:
   - deploy
 
@@ -105,3 +105,4 @@ deploy:
   script:
     - echo "Ready to deploy $INSTITUTE_NAME"
   when: manual
+```
