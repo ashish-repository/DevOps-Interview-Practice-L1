@@ -60,7 +60,7 @@ spec:
 ```
 
 ## 🔹 Shell Script — Menu Driven Program
-``
+```
 #!/bin/bash
 
 echo "1) Show date"
