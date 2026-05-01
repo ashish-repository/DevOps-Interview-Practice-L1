@@ -3,7 +3,7 @@
 Fix the following broken files:
 
 ## 🔹 Ansible (broken)
-
+```
 - name "Broken"
  hosts: all
  tasks:
@@ -11,10 +11,10 @@ Fix the following broken files:
      yum:
        name: nginx
        state present
-
+```
 
 ## 🔹 Terraform (broken)
-
+```
 resouce "aws_instance" BadEC2 {
   ami = ami-123
 instance_type="c5.large"
@@ -22,10 +22,10 @@ tags = {
  Name:"Broken"
 }
 }
-
+```
 
 ## 🔹 Kubernetes (broken)
-
+```
 apiVersion apps/v1
 kind Deployment
 metadata:
@@ -43,13 +43,13 @@ spec:
     containers:
      - name app
        image nginx
-
+```
 
 # Matrix Builds
 
 ## 🔹 Jenkins Pipeline — Matrix Build
 You will learn how to **run the same build on multiple environments**.
-
+```
 pipeline {
     agent any
     environment {
@@ -71,10 +71,10 @@ pipeline {
         }
     }
 }
-
+```
 ## 🔹 GitLab CI — Matrix Jobs
 You will learn how to **run jobs across multiple environments using matrix**.
-
+```
 stages:
   - build
 
@@ -86,3 +86,4 @@ build:
       - JAVA_VERSION: ['8', '11', '17']
   script:
     - echo "Building with Java $JAVA_VERSION"
+```
