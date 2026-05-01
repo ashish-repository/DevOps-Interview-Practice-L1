@@ -17,22 +17,22 @@
 
 ## 🔹 Terraform — Route Table + Association
 
-resource "aws_route_table" "PathnexRT" {
-  vpc_id = aws_vpc.PathnexVPC.id
+resource "aws_route_table" "CloudopsRT" {
+  vpc_id = aws_vpc.CloudopsVPC.id
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.PathnexIGW.id
+    gateway_id = aws_internet_gateway.CloudopsIGW.id
   }
 
   tags = {
-    Name = "Pathnex-RouteTable"
+    Name = "Cloudops-RouteTable"
   }
 }
 
-resource "aws_route_table_association" "PathnexRTA" {
-  subnet_id      = aws_subnet.PathnexSubnet.id
-  route_table_id = aws_route_table.PathnexRT.id
+resource "aws_route_table_association" "CloudopsRTA" {
+  subnet_id      = aws_subnet.CloudopsSubnet.id
+  route_table_id = aws_route_table.CloudopsRT.id
 }
 
 
@@ -41,10 +41,10 @@ resource "aws_route_table_association" "PathnexRTA" {
 apiVersion: v1
 kind: Secret
 metadata:
-  name: pathnex-secret
+  name: Cloudops-secret
 type: Opaque
 data:
-  password: cGF0aG5leDEyMw==   # "pathnex123" base64
+  password: cGF0aG5leDEyMw==   # "Cloudops123" base64
 
 
 ## 🔹 Shell Script — For Loop 1–10
@@ -64,12 +64,12 @@ You will learn how to **reuse dependencies to speed up builds**.
 pipeline {
     agent any
     environment {
-        INSTITUTE_NAME = "Pathnex"
+        INSTITUTE_NAME = "Cloudops"
     }
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/Pathnex/sample-java-app.git'
+                git url: 'https://github.com/ashishcloudops01/sample-maven-project.git'
             }
         }
         stage('Build') {
@@ -100,6 +100,6 @@ build:
     paths:
       - .m2/repository
   script:
-    - git clone https://github.com/Pathnex/sample-java-app.git
+    - git clone https://github.com/ashishcloudops01/sample-maven-project.git
     - cd sample-java-app
     - mvn clean compile
