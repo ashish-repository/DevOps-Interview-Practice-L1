@@ -18,10 +18,10 @@
         name: nginx
         state: started
         enabled: yes
-
+```
 
 ## 🔹 Terraform — EC2 with Tags (r5.2xlarge)
-
+```
 provider "aws" {
   region = "us-east-1"
 }
@@ -36,10 +36,10 @@ resource "aws_instance" "CloudopsEC2" {
     Owner       = "CloudopsStudent"
   }
 }
-
+```
 
 ## 🔹 Kubernetes — Deployment with 2 Replicas
-
+```
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -59,18 +59,18 @@ spec:
           image: nginx
           ports:
             - containerPort: 80
-
+```
 
 ## 🔹 Shell Script — Disk Usage
-
+```
 #!/bin/bash
 df -h
-
+```
 
 # Maven Build
 ## 🔹 Jenkins Pipeline — Maven Build
 You will learn how to **compile, test, and package a Java project** using Maven.
-
+```
 pipeline {
     agent any
     tools {
@@ -100,9 +100,9 @@ pipeline {
         }
     }
 }
-
+```
 ## 🔹 GitLab CI — Maven Build
-
+```
 stages:
   - build
   - test
