@@ -1,7 +1,7 @@
 # Day 04 — More Packages, Key Pair, Service
 
 ## 🔹 Ansible — Install Multiple Packages
-
+```
 ---
 - name: Install packages for Cloudops
   hosts: all
@@ -14,10 +14,10 @@
           - git
           - wget
         state: present
-
+```
 
 ## 🔹 Terraform — EC2 with Key Pair (c6i.8xlarge)
-
+```
 provider "aws" {
   region = "us-east-1"
 }
@@ -36,10 +36,10 @@ resource "aws_instance" "CloudopsEC2" {
     Name = "Cloudops-EC2"
   }
 }
-
+```
 
 ## 🔹 Kubernetes — Create ClusterIP Service
-
+```
 apiVersion: v1
 kind: Service
 metadata:
@@ -50,12 +50,12 @@ spec:
   ports:
     - port: 80
       targetPort: 80
-
+```
 
 # Parallel Builds
 ## 🔹 Jenkins Pipeline — Parallel Build & Test
 You will learn how to **run build and test in parallel**.
-
+```
 pipeline {
     agent any
     stages {
@@ -75,10 +75,11 @@ pipeline {
         }
     }
 }
+```
 
 ## 🔹 GitLab CI — Parallel Jobs
 You will learn how to **run parallel jobs in GitLab CI**.
-
+```
 stages:
   - build-test
 
@@ -98,3 +99,4 @@ maven-test:
     - cd sample-java-app
     - mvn test
   parallel: 1
+```
