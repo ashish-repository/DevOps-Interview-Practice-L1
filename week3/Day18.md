@@ -1,7 +1,7 @@
 # Day 18 — Facts, Variables, Affinity, Log Archiving
 
 ## 🔹 Ansible — Use Ansible Facts
-
+```
 ---
 - name: Show system facts for Cloudops
   hosts: all
@@ -14,10 +14,10 @@
     - name: Print IP address
       debug:
         var: ansible_facts['default_ipv4']['address']
-
+```
 
 ## 🔹 Terraform — Variables, Outputs, tfvars
-
+```
 # variables.tf
 variable "instance_type" {
   default = "c6a.12xlarge"
@@ -33,10 +33,10 @@ resource "aws_instance" "CloudopsServer" {
 output "Cloudops_ip" {
   value = aws_instance.CloudopsServer.public_ip
 }
-
+```
 
 ## 🔹 Kubernetes — Node Affinity
-
+```
 apiVersion: v1
 kind: Pod
 metadata:
@@ -54,21 +54,21 @@ spec:
   containers:
     - name: web
       image: nginx
-
+```
 
 ## 🔹 Shell Script — Archive Log Files
-
+```
 #!/bin/bash
 
 tar -czf /backup/Cloudops-logs-$(date +%F).tar.gz /var/log/
 echo "Logs archived."
-
+```
 
 # Rollback Simulation
 
 ## 🔹 Jenkins Pipeline — Rollback on Failure
 You will learn how to **simulate rollback if deployment fails**.
-
+```
 pipeline {
     agent any
     environment {
@@ -89,10 +89,10 @@ pipeline {
         }
     }
 }
-
+```
 ## 🔹 GitLab CI — Rollback Simulation
 You will learn how to **simulate rollback using after_script**.
-
+```
 stages:
   - deploy
 
@@ -107,3 +107,4 @@ deploy:
     - exit 1
   after_script:
     - echo "Deployment failed. Rolling back $INSTITUTE_NAME application..."
+```
