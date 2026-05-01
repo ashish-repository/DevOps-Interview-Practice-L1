@@ -1,7 +1,7 @@
 # Day 10 — Conditions, Route Table, Secret, Loops
 
 ## 🔹 Ansible — When Condition
-
+```
 ---
 - name: Install tool based on OS
   hosts: all
@@ -13,10 +13,10 @@
         name: htop
         state: present
       when: ansible_facts['os_family'] == "RedHat"
-
+```
 
 ## 🔹 Terraform — Route Table + Association
-
+```
 resource "aws_route_table" "CloudopsRT" {
   vpc_id = aws_vpc.CloudopsVPC.id
 
@@ -34,10 +34,10 @@ resource "aws_route_table_association" "CloudopsRTA" {
   subnet_id      = aws_subnet.CloudopsSubnet.id
   route_table_id = aws_route_table.CloudopsRT.id
 }
-
+```
 
 ## 🔹 Kubernetes — Secret
-
+```
 apiVersion: v1
 kind: Secret
 metadata:
@@ -45,22 +45,22 @@ metadata:
 type: Opaque
 data:
   password: cGF0aG5leDEyMw==   # "Cloudops123" base64
-
+```
 
 ## 🔹 Shell Script — For Loop 1–10
-
+```
 #!/bin/bash
 
 for i in {1..10}; do
   echo "Number: $i"
 done
-
+```
 
 # Caching Dependencies
 
 ## 🔹 Jenkins Pipeline — Cache Maven Dependencies
 You will learn how to **reuse dependencies to speed up builds**.
-
+```
 pipeline {
     agent any
     environment {
@@ -85,10 +85,10 @@ pipeline {
         }
     }
 }
-
+```
 ## 🔹 GitLab CI — Cache Dependencies
 You will learn how to **cache dependencies in GitLab CI**.
-
+```
 stages:
   - build
 
@@ -103,3 +103,4 @@ build:
     - git clone https://github.com/ashishcloudops01/sample-maven-project.git
     - cd sample-java-app
     - mvn clean compile
+```
