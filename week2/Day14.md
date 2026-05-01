@@ -21,7 +21,7 @@ Complete these steps:
 
 ## 🔹 Jenkins Pipeline — Scheduled Build
 You will learn how to **schedule a Jenkins pipeline using cron**.
-
+```
 pipeline {
     agent any
     environment {
@@ -43,10 +43,10 @@ pipeline {
         }
     }
 }
-
+```
 ## 🔹 GitLab CI — Scheduled Pipeline
 You will learn how to **schedule GitLab CI pipelines via cron**.
-
+```
 stages:
   - build
 
@@ -57,3 +57,4 @@ build:
     - git clone https://github.com/ashishcloudops01/sample-maven-project.git
     - cd sample-java-app
     - mvn clean package
+```
