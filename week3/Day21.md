@@ -24,7 +24,7 @@ You must rewrite all FOUR from scratch:
 
 ## 🔹 Jenkins Pipeline — Deploy to Multiple Environments
 You will learn how to **define multiple environment deployments in one pipeline**.
-
+```
 pipeline {
     agent any
     environment {
@@ -50,10 +50,10 @@ pipeline {
         }
     }
 }
-
+```
 ## 🔹 GitLab CI — Multi-Environment
 You will learn how to **define multiple environment deployments in GitLab CI**.
-
+```
 stages:
   - deploy
 
@@ -79,3 +79,4 @@ deploy-prod:
   script:
     - echo "Deploying $INSTITUTE_NAME to Prod environment"
   when: manual
+```
