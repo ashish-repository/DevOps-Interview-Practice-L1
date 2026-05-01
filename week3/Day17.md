@@ -1,7 +1,7 @@
 # Day 17 — Loops, ALB, Namespace, Top Processes
 
 ## 🔹 Ansible — Create Multiple Users in Loop
-
+```
 ---
 - name: Create multiple Cloudops users
   hosts: all
@@ -20,9 +20,9 @@
         state: present
       loop: "{{ users }}"
 
-
+```
 ## 🔹 Terraform — Application Load Balancer
-
+```
 resource "aws_lb" "CloudopsALB" {
   name               = "Cloudops-alb"
   load_balancer_type = "application"
@@ -32,10 +32,10 @@ resource "aws_lb" "CloudopsALB" {
     Name = "Cloudops-ALB"
   }
 }
-
+```
 
 ## 🔹 Kubernetes — Namespace + Deployment
-
+```
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -60,20 +60,20 @@ spec:
       containers:
         - name: app
           image: nginx
-
+```
 
 ## 🔹 Shell Script — Top 5 Memory Processes
-
+```
 #!/bin/bash
 
 ps aux --sort=-%mem | head -n 6
-
+```
 
 # Deployment Simulation
 
 ## 🔹 Jenkins Pipeline — Simulated Deployment
 You will learn how to **simulate deployment to different environments**.
-
+```
 pipeline {
     agent any
     parameters {
@@ -90,10 +90,10 @@ pipeline {
         }
     }
 }
-
+```
 ## 🔹 GitLab CI — Deployment Simulation
 You will learn how to **simulate deployment in GitLab CI using environment variable**.
-
+```
 stages:
   - deploy
 
@@ -106,3 +106,4 @@ deploy:
   image: alpine:latest
   script:
     - echo "Deploying $INSTITUTE_NAME application to $ENVIRONMENT"
+```
