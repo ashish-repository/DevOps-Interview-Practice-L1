@@ -1,7 +1,7 @@
 # Day 23 — Tags, EIP, HPA, Kill Process
 
 ## 🔹 Ansible — Add Tags to Users
-
+```
 ---
 - name: Create users with comments
   hosts: all
@@ -12,10 +12,10 @@
       user:
         name: devuser
         comment: "Cloudops Developer User"
-
+```
 
 ## 🔹 Terraform — Elastic IP
-
+```
 resource "aws_eip" "CloudopsEIP" {
   instance = aws_instance.CloudopsEC2.id
 
@@ -24,9 +24,9 @@ resource "aws_eip" "CloudopsEIP" {
   }
 }
 
-
+```
 ## 🔹 Kubernetes — Horizontal Pod Autoscaler (HPA)
-
+```
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
@@ -46,21 +46,21 @@ spec:
           type: Utilization
           averageUtilization: 50
 
-
+```
 ## 🔹 Shell Script — Kill High CPU Process
-
+```
 #!/bin/bash
 
 PID=$(ps aux --sort=-%cpu | awk 'NR==2{print $2}')
 
 echo "Killing process: $PID"
 kill -9 $PID
-
+```
 # Docker Integration
 
 ## 🔹 Jenkins Pipeline — Build Docker Image
 You will learn how to **build and tag Docker images** with proper labels.
-
+```
 pipeline {
     agent any
     environment {
@@ -88,10 +88,10 @@ pipeline {
         }
     }
 }
-
+```
 ## 🔹 GitLab CI — Build Docker Image
 You will learn how to **build Docker images in GitLab CI**.
-
+```
 stages:
   - docker-build
 
@@ -112,3 +112,4 @@ docker-build:
       --label "TEAM=$TEAM" \
       --label "ENV=$ENV" \
       --label "PROJECT=$PROJECT" .
+```
