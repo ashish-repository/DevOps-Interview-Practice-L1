@@ -11,16 +11,16 @@
 #     vars/main.yml
 
 Example task file:
-
+```
 ---
 - name: Install httpd
   yum:
     name: httpd
     state: present
 
-
+```
 ## 🔹 Terraform — DynamoDB Table
-
+```
 resource "aws_dynamodb_table" "CloudopsTable" {
   name           = "CloudopsTrainingTable"
   billing_mode   = "PAY_PER_REQUEST"
@@ -35,10 +35,10 @@ resource "aws_dynamodb_table" "CloudopsTable" {
     Name = "Cloudops-DDB"
   }
 }
-
+```
 
 ## 🔹 Kubernetes — StatefulSet
-
+```
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -60,10 +60,10 @@ spec:
           env:
             - name: MYSQL_ROOT_PASSWORD
               value: "Cloudops123"
-
+```
 
 ## 🔹 Shell Script — Check Service Running
-
+```
 #!/bin/bash
 
 SERVICE="sshd"
@@ -74,12 +74,12 @@ else
   echo "$SERVICE is NOT running"
 fi
 
-
+```
 # Artifacts Promotion
 
 ## 🔹 Jenkins Pipeline — Promote Artifacts
 You will learn how to **promote build artifacts from dev to staging**.
-
+```
 pipeline {
     agent any
     environment {
@@ -99,10 +99,10 @@ pipeline {
         }
     }
 }
-
+```
 ## 🔹 GitLab CI — Artifacts Promotion
 You will learn how to **promote artifacts manually using GitLab CI manual job**.
-
+```
 stages:
   - build
   - promote
@@ -123,3 +123,4 @@ promote:
   script:
     - echo "Promoting artifacts for Cloudops"
   when: manual
+```
