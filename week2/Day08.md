@@ -1,7 +1,7 @@
 # Day 08 — Variables, VPC, Probes, Loops
 
 ## 🔹 Ansible — Install Packages Using Variables
-
+```
 ---
 - name: Install packages for Cloudops using variables
   hosts: all
@@ -18,10 +18,10 @@
       yum:
         name: "{{ Cloudops_packages }}"
         state: present
-
+```
 
 ## 🔹 Terraform — Create VPC + Subnet
-
+```
 provider "aws" {
   region = "us-east-1"
 }
@@ -43,10 +43,10 @@ resource "aws_subnet" "CloudopsSubnet" {
     Name = "Cloudops-Subnet"
   }
 }
-
+```
 
 ## 🔹 Kubernetes — Add Liveness & Readiness Probes
-
+```
 apiVersion: v1
 kind: Pod
 metadata:
@@ -65,22 +65,22 @@ spec:
           path: /
           port: 80
         initialDelaySeconds: 3
-
+```
 
 ## 🔹 Shell Script — Loop Through List
-
+```
 #!/bin/bash
 
 for item in Cloudops DevOps Training; do
   echo "Item: $item"
 done
-
+```
 
 # Conditional Stages
 
 ## 🔹 Jenkins Pipeline — Conditional Execution
 You will learn how to **run stages based on branch or parameter conditions**.
-
+```
 pipeline {
     agent any
     parameters {
@@ -113,10 +113,10 @@ pipeline {
         }
     }
 }
-
+```
 ## 🔹 GitLab CI — Conditional Jobs
 You will learn how to **run jobs based on variables or branches**.
-
+```
 stages:
   - build
   - deploy
@@ -139,3 +139,4 @@ deploy:
   only:
     variables:
       - $CI_ENVIRONMENT_NAME == "dev"
+```
