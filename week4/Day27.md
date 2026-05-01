@@ -1,7 +1,7 @@
 # Day 27 — Copy Directory, EBS Volume, NodePort, Log Cleaner
 
 ## 🔹 Ansible — Copy Directory Recursively
-
+```
 ---
 - name: Copy Cloudops files
   hosts: all
@@ -13,10 +13,10 @@
         src: /opt/Cloudops/
         dest: /backup/Cloudops/
         remote_src: yes
-
+```
 
 ## 🔹 Terraform — EBS Volume + Attachment
-
+```
 resource "aws_ebs_volume" "CloudopsVolume" {
   availability_zone = "us-east-1a"
   size              = 20
@@ -31,10 +31,10 @@ resource "aws_volume_attachment" "CloudopsAttach" {
   volume_id   = aws_ebs_volume.CloudopsVolume.id
   instance_id = aws_instance.CloudopsEC2.id
 }
-
+```
 
 ## 🔹 Kubernetes — NodePort Service
-
+```
 apiVersion: v1
 kind: Service
 metadata:
@@ -47,22 +47,22 @@ spec:
     - port: 80
       targetPort: 80
       nodePort: 30080
-
+```
 
 ## 🔹 Shell Script — Clean Old Logs
-
+```
 #!/bin/bash
 
 find /var/log -type f -mtime +7 -exec rm -f {} \;
 
 echo "Old logs removed."
-
+```
 
 # Jenkins Scripted Pipeline
 
 ## 🔹 Jenkins Scripted Pipeline — Complex Logic
 You will learn how to **write scripted pipelines with conditional logic**.
-
+```
 node {
     def envName = "dev"
     env.INSTITUTE_NAME = "Cloudops"
@@ -85,3 +85,4 @@ node {
         sh 'echo "Deploying $INSTITUTE_NAME app to $envName for $TEAM team"'
     }
 }
+```
