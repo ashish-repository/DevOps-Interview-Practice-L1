@@ -14,7 +14,7 @@ Set a timer: **20 minutes**
 
 ## 🔹 Jenkins Pipeline — Parameterized
 You will learn how to **create parameterized builds in Jenkins**.
-
+```
 pipeline {
     agent any
     parameters {
@@ -36,10 +36,10 @@ pipeline {
         }
     }
 }
-
+```
 ## 🔹 GitLab CI — Parameterized via Variables
 You will learn how to **use variables to parameterize GitLab jobs**.
-
+```
 stages:
   - deploy
 
@@ -52,3 +52,4 @@ deploy:
   image: alpine:latest
   script:
     - echo "Deploying to $ENVIRONMENT by $INSTITUTE_NAME"
+```
