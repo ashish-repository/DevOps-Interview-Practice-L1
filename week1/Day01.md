@@ -76,7 +76,7 @@ pipeline {
 ```
 ## 🔹 GitLab CI — Checkout Git
 You will learn how to **checkout a Git repository in GitLab CI**.
-
+```
 stages:
   - checkout
 
@@ -86,3 +86,4 @@ git-checkout:
     - git clone https://github.com/ashishcloudops01/sample-maven-project.git
     - cd sample-java-app
     - ls -la
+```
