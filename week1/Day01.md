@@ -3,7 +3,7 @@
 ## 🔹 Ansible Task — Install Nginx on Cloudops Server
 
 Rewrite this YAML manually:
-
+```
 ---
 - name: Install Nginx on Cloudops server
   hosts: all
@@ -14,7 +14,7 @@ Rewrite this YAML manually:
       yum:
         name: nginx
         state: present
-
+```
 
 ## 🔹 Terraform Task — Create EC2 (c5.xlarge)
 
