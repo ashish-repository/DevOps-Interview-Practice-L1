@@ -1,7 +1,7 @@
 # Day 02 — Services & Tags
 
 ## 🔹 Ansible — Install & Enable Nginx
-
+```
 ---
 - name: Install and start Nginx on Cloudops
   hosts: all
@@ -129,3 +129,4 @@ maven-package:
   script:
     - cd sample-java-app
     - mvn package
+```
