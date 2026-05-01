@@ -17,7 +17,7 @@ Rewrite this YAML manually:
 ```
 
 ## 🔹 Terraform Task — Create EC2 (c5.xlarge)
-
+```
 provider "aws" {
   region = "us-east-1"
 }
@@ -31,9 +31,10 @@ resource "aws_instance" "CloudopsEC2" {
   }
 }
 
+```
 
 ## 🔹 Kubernetes Task — Create Nginx Pod
-
+```
 apiVersion: v1
 kind: Pod
 metadata:
@@ -44,19 +45,19 @@ spec:
       image: nginx:latest
       ports:
         - containerPort: 80
-
+```
 
 ## 🔹 Shell Script — Print Date & Hostname
-
+```
 #!/bin/bash
 echo "Date: $(date)"
 echo "Hostname: $(hostname)"
-
+```
 
 # Git Integration
 ## 🔹 Jenkins Pipeline — Checkout Git
 You will learn how to **checkout a Git repository** and list files.
-
+```
 pipeline {
     agent any
     stages {
@@ -72,7 +73,7 @@ pipeline {
         }
     }
 }
-
+```
 ## 🔹 GitLab CI — Checkout Git
 You will learn how to **checkout a Git repository in GitLab CI**.
 
