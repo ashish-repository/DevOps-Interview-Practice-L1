@@ -1,7 +1,7 @@
 # Day 22 — Handlers, Security Group, DaemonSet, Disk Monitor
 
 ## 🔹 Ansible — Use Handler on Config Change
-
+``
 ---
 - name: Configure Nginx for Cloudops
   hosts: all
@@ -22,9 +22,9 @@
         name: nginx
         state: restarted
 
-
+```
 ## 🔹 Terraform — Security Group
-
+```
 resource "aws_security_group" "CloudopsSG" {
   name   = "Cloudops-sg"
   vpc_id = aws_vpc.CloudopsVPC.id
@@ -40,10 +40,10 @@ resource "aws_security_group" "CloudopsSG" {
     Name = "Cloudops-SG"
   }
 }
-
+```
 
 ## 🔹 Kubernetes — DaemonSet
-
+```
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
@@ -62,21 +62,21 @@ spec:
           image: busybox
           command: ["sh", "-c", "while true; do echo Cloudops Node Monitor; sleep 20; done"]
 
-
+```
 ## 🔹 Shell Script — Monitor Disk Usage
-
+```
 #!/bin/bash
 
 USAGE=$(df -h / | tail -1 | awk '{print $5}')
 
 echo "Disk Usage: $USAGE"
 
-
+```
 # Advanced Triggers
 
 ## 🔹 Jenkins Pipeline — Trigger on Git Tag
 You will learn how to **trigger builds on Git tags** with realistic tags.
-
+```
 pipeline {
     agent any
     environment {
@@ -103,10 +103,10 @@ pipeline {
         }
     }
 }
-
+```
 ## 🔹 GitLab CI — Trigger on Tag
 You will learn how to **trigger CI jobs when a tag is pushed**.
-
+```
 stages:
   - build
 
@@ -122,3 +122,4 @@ build:
     - echo "Building $INSTITUTE_NAME app for $TEAM team in $ENV environment"
   only:
     - tags
+```
