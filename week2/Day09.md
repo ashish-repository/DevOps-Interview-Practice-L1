@@ -1,7 +1,7 @@
 # Day 09 — Templates, Internet Gateway, ConfigMap, CPU Load
 
 ## 🔹 Ansible — Use Jinja2 Template
-
+```
 ---
 - name: Deploy template for Cloudops
   hosts: all
@@ -12,10 +12,10 @@
       template:
         src: Cloudops.conf.j2
         dest: /etc/Cloudops.conf
-
+```
 
 ## 🔹 Terraform — Internet Gateway
-
+```
 resource "aws_internet_gateway" "CloudopsIGW" {
   vpc_id = aws_vpc.CloudopsVPC.id
 
@@ -23,10 +23,10 @@ resource "aws_internet_gateway" "CloudopsIGW" {
     Name = "Cloudops-IGW"
   }
 }
-
+```
 
 ## 🔹 Kubernetes — Create ConfigMap
-
+```
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -34,22 +34,22 @@ metadata:
 data:
   APP_MODE: "production"
   WELCOME_MSG: "Hello Cloudops"
-
+```
 
 ## 🔹 Shell Script — Check CPU Load
-
+```
 #!/bin/bash
 
 LOAD=$(uptime | awk '{print $10}')
 
 echo "Current CPU Load: $LOAD"
-
+```
 
 # Artifacts and Archiving
 
 ## 🔹 Jenkins Pipeline — Archive Artifacts
 You will learn how to **save build artifacts for future use**.
-
+```
 pipeline {
     agent any
     environment {
@@ -73,10 +73,10 @@ pipeline {
         }
     }
 }
-
+```
 ## 🔹 GitLab CI — Artifacts
 You will learn how to **store artifacts in GitLab CI**.
-
+```
 stages:
   - build
 
@@ -91,3 +91,4 @@ build:
     paths:
       - target/*.jar
     expire_in: 1 week
+```
