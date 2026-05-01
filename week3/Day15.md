@@ -1,7 +1,7 @@
 # Day 15 — Java, S3 Bucket, CronJob, File Reader
 
 ## 🔹 Ansible — Install Java & Set JAVA_HOME
-
+```
 ---
 - name: Install Java on Cloudops server
   hosts: all
@@ -17,10 +17,10 @@
       lineinfile:
         path: /etc/profile
         line: 'export JAVA_HOME=/usr/lib/jvm/java-11-openjdk'
-
+```
 
 ## 🔹 Terraform — Create S3 Bucket
-
+```
 provider "aws" {
   region = "us-east-1"
 }
@@ -32,10 +32,10 @@ resource "aws_s3_bucket" "CloudopsBucket" {
     Name = "CloudopsBucket"
   }
 }
-
+```
 
 ## 🔹 Kubernetes — CronJob
-
+```
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -51,10 +51,10 @@ spec:
               image: busybox
               command: ["sh", "-c", "echo Cloudops CronJob running"]
           restartPolicy: OnFailure
-
+```
 
 ## 🔹 Shell Script — Read File Line-by-Line
-
+```
 #!/bin/bash
 
 FILE="/etc/passwd"
@@ -62,13 +62,13 @@ FILE="/etc/passwd"
 while read line; do
   echo "Line: $line"
 done < $FILE
-
+```
 
 # Advanced Notifications
 
 ## 🔹 Jenkins Pipeline — Slack Notification
 You will learn how to **send Slack notifications after build success or failure**.
-
+```
 pipeline {
     agent any
     environment {
@@ -96,10 +96,10 @@ pipeline {
         }
     }
 }
-
+```
 ## 🔹 GitLab CI — Slack Notification
 You will learn how to **notify Slack in GitLab CI**.
-
+```
 stages:
   - build
 
@@ -115,3 +115,4 @@ build:
     - cd sample-java-app
     - mvn clean package
     - curl -X POST -H 'Content-type: application/json' --data '{"text":"Build success for Cloudops"}' $SLACK_WEBHOOK
+```
