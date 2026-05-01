@@ -1,7 +1,7 @@
 # Day 26 — Packages + Services, R53 Record, InitContainer, Status Script
 
 ## 🔹 Ansible — Install + Start Multiple Services
-
+```
 ---
 - name: Install and enable services
   hosts: all
@@ -24,9 +24,9 @@
         - httpd
         - firewalld
 
-
+```
 ## 🔹 Terraform — Route53 Record
-
+```
 resource "aws_route53_record" "CloudopsRecord" {
   zone_id = "Z1234567890"
   name    = "app.Cloudops.com"
@@ -34,10 +34,10 @@ resource "aws_route53_record" "CloudopsRecord" {
   ttl     = 300
   records = [aws_eip.CloudopsEIP.public_ip]
 }
-
+```
 
 ## 🔹 Kubernetes — Init Container
-
+```
 apiVersion: v1
 kind: Pod
 metadata:
@@ -51,21 +51,21 @@ spec:
     - name: main
       image: nginx
 
-
+```
 ## 🔹 Shell Script — System Status
-
+```
 #!/bin/bash
 
 echo "Hostname: $(hostname)"
 echo "Uptime: $(uptime)"
 echo "IP: $(hostname -I)"
-
+```
 
 # GitLab Dynamic Environments
 
 ## 🔹 Jenkins Pipeline — Deploy to Dynamic Environment
 You will learn how to **simulate deployment to dynamic environments with tags**.
-
+```
 pipeline {
     agent any
     environment {
@@ -83,10 +83,10 @@ pipeline {
         }
     }
 }
-
+```
 ## 🔹 GitLab CI — Dynamic Environment Deployment
 You will learn how to **use GitLab dynamic environment names with realistic tags**.
-
+```
 stages:
   - deploy
 
@@ -102,3 +102,4 @@ deploy:
     url: http://$CI_COMMIT_REF_NAME.Cloudops.com
   script:
     - echo "Deploying $INSTITUTE_NAME app to $CI_COMMIT_REF_NAME for $TEAM team"
+```
