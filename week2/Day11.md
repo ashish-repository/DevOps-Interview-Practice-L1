@@ -1,7 +1,7 @@
 # Day 11 — Database, Outputs, Sidecars, Functions
 
 ## 🔹 Ansible — Install MariaDB
-
+```
 ---
 - name: Install MariaDB for Cloudops
   hosts: all
@@ -18,10 +18,10 @@
         name: mariadb
         state: started
         enabled: yes
-
+```
 
 ## 🔹 Terraform — Output Public IP (r5.2xlarge)
-
+```
 resource "aws_instance" "CloudopsServer" {
   ami           = "ami-0abcd1234abcd1234"
   instance_type = "r5.2xlarge"
@@ -34,10 +34,10 @@ resource "aws_instance" "CloudopsServer" {
 output "CloudopsPublicIP" {
   value = aws_instance.CloudopsServer.public_ip
 }
-
+```
 
 ## 🔹 Kubernetes — Sidecar Container
-
+```
 apiVersion: v1
 kind: Pod
 metadata:
@@ -50,9 +50,9 @@ spec:
       image: busybox
       command: ["sh", "-c", "echo Sidecar running; sleep 3600"]
 
-
+```
 ## 🔹 Shell Script — Function Example
-
+```
 #!/bin/bash
 
 greet() {
@@ -61,13 +61,13 @@ greet() {
 
 greet
 
-
+```
 
 # Notifications
 
 ## 🔹 Jenkins Pipeline — Email Notifications
 You will learn how to **send email notifications on failure or success**.
-
+```
 pipeline {
     agent any
     environment {
@@ -98,10 +98,10 @@ pipeline {
         }
     }
 }
-
+```
 ## 🔹 GitLab CI — Notifications
 You will learn how to **notify via email after job completion**.
-
+```
 stages:
   - build
 
@@ -114,3 +114,4 @@ build:
     - mvn clean package
   after_script:
     - echo "Sending notification email to team@Cloudops.com"
+```
